@@ -1,0 +1,131 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         8.0.17 - MySQL Community Server - GPL
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             10.3.0.5771
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Volcando estructura para tabla zapatoroto.cliente
+CREATE DATABASE ZapateriaEdgar;
+USE ZapateriaEdgar;
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `identificacion` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(50) NOT NULL DEFAULT '0',
+  `id_pais` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla zapatoroto.cliente: ~0 rows (aproximadamente)
+DELETE FROM `cliente`;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` (`id_cliente`, `identificacion`, `nombre`, `id_pais`) VALUES
+	(1, 7548541, 'jorgue suarez', 1),
+	(2, 16594845, 'johana garnica', 2),
+	(3, 7586524, 'esteban marquez', 1),
+	(4, 5452596, 'alberto quintero', 2),
+	(5, 8754197, 'Luisa montenegro', 3),
+	(6, 21474836, 'Jorgue garcia', 1),
+	(7, 7854754, 'Luis Fernando peralta', 4),
+	(8, 78745456, 'Gilberto mendez', 3),
+	(9, 74566879, 'John Rincon', 1),
+	(10, 3648754, 'juan aristisabal', 1),
+	(11, 52178988, 'Georgina mendez', 4);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+
+-- Volcando estructura para tabla zapatoroto.facturacion
+CREATE TABLE IF NOT EXISTS `facturacion` (
+  `id_factura` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cliente` int(11) DEFAULT '0',
+  `id_producto` int(11) DEFAULT '0',
+  `cantidad` int(11) DEFAULT '0',
+  `impuesto` int(11) DEFAULT '0',
+  `descuento` int(11) DEFAULT '0',
+  `valor` int(11) DEFAULT NULL,
+  `valor_total` int(11) DEFAULT '0',
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id_factura`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla zapatoroto.facturacion: ~0 rows (aproximadamente)
+DELETE FROM `facturacion`;
+/*!40000 ALTER TABLE `facturacion` DISABLE KEYS */;
+INSERT INTO `facturacion` (`id_factura`, `id_cliente`, `id_producto`, `cantidad`, `impuesto`, `descuento`, `valor`, `valor_total`, `fecha`) VALUES
+	(1, 1, 1, 1, 3500, 0, 35000, 38500, '2020-06-05'),
+	(2, 2, 2, 1, 18000, 0, 180000, 198000, '2020-06-05'),
+	(3, 3, 3, 1, 3500, 0, 35000, 38500, '2020-06-05'),
+	(4, 1, 2, 1, 18000, 0, 18000, 198000, '2020-06-01'),
+	(5, 5, 10, 1, 12000, 0, 120000, 132000, '2020-05-05');
+/*!40000 ALTER TABLE `facturacion` ENABLE KEYS */;
+
+-- Volcando estructura para tabla zapatoroto.inventario
+CREATE TABLE IF NOT EXISTS `inventario` (
+  `id_inventario` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `id_producto` int(11) NOT NULL DEFAULT '0',
+  `movimiento` int(11) NOT NULL DEFAULT '0',
+  `Cantidad` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_inventario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla zapatoroto.inventario: ~0 rows (aproximadamente)
+DELETE FROM `inventario`;
+/*!40000 ALTER TABLE `inventario` DISABLE KEYS */;
+INSERT INTO `inventario` (`id_inventario`, `fecha`, `id_producto`, `movimiento`, `Cantidad`) VALUES
+	(1, '2020-06-05 00:00:00', 1, 1, 100),
+	(2, '2020-05-10 00:00:00', 2, 1, 80),
+	(3, '2020-05-11 00:00:00', 2, 0, 1),
+	(4, '2020-05-13 00:00:00', 1, 0, 1);
+/*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
+
+-- Volcando estructura para tabla zapatoroto.pais
+CREATE TABLE IF NOT EXISTS `pais` (
+  `id_pais` int(11) DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla zapatoroto.pais: ~0 rows (aproximadamente)
+DELETE FROM `pais`;
+/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
+INSERT INTO `pais` (`id_pais`, `nombre`) VALUES
+	(1, 'Perú'),
+	(2, 'Colombia'),
+	(3, 'Mexico'),
+	(4, 'Argentina');
+/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+
+-- Volcando estructura para tabla zapatoroto.productos
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `presentacion` varchar(50) DEFAULT NULL,
+  `valor` int(11) DEFAULT '0',
+  PRIMARY KEY (`id_producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla zapatoroto.productos: ~0 rows (aproximadamente)
+DELETE FROM `productos`;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` (`id_producto`, `nombre`, `presentacion`, `valor`) VALUES
+	(1, 'Tenis', 'Caja deluxe', 35000),
+	(2, 'Botas', 'Caja grande', 180000),
+	(3, 'zapato deportivo', 'Bolsa', 35000),
+	(4, 'Tintura', 'litro', 7500),
+	(5, 'Cordones', 'Paquete 100', 3000),
+	(6, 'Cuero marron', 'Metro', 90000),
+	(7, 'Cinturon cuero', 'Caja', 30000),
+	(8, 'Llaveros logo empresa', 'Paquete de 100', 50000),
+	(9, 'remaches', 'Caja 100', 8000),
+	(10, 'Chaqueta deportiva', 'Bolsa plastica', 120000),
+	(11, 'Chaqueta Clasica', 'Bolsa de lujo', 150000);
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
